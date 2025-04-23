@@ -1,0 +1,22 @@
+# Frontend Dockerfile
+
+# Use official Node.js image
+FROM node:18
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json
+COPY frontend/package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy all files from the frontend directory
+COPY frontend/ .
+
+# Expose port for frontend (Vite default is 5173)
+EXPOSE 5173
+
+# Run the frontend with Vite
+CMD ["npm", "run", "dev"]
